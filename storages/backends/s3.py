@@ -45,10 +45,12 @@ except ImportError as e:
 # NOTE: these are defined as functions so both can be tested
 def _use_cryptography_signer():
     # https://cryptography.io as an RSA backend
-    from cryptography.hazmat.backends import default_backend
-    from cryptography.hazmat.primitives import hashes
-    from cryptography.hazmat.primitives.asymmetric import padding
-    from cryptography.hazmat.primitives.serialization import load_pem_private_key
+    from cryptography.hazmat.backends import default_backend  # noqa: PLC0415
+    from cryptography.hazmat.primitives import hashes  # noqa: PLC0415
+    from cryptography.hazmat.primitives.asymmetric import padding  # noqa: PLC0415
+    from cryptography.hazmat.primitives.serialization import (  # noqa: PLC0415
+        load_pem_private_key,
+    )
 
     def _cloud_front_signer_from_pem(key_id, pem):
         if isinstance(pem, str):
@@ -64,7 +66,7 @@ def _use_cryptography_signer():
 
 def _use_rsa_signer():
     # https://stuvel.eu/rsa as an RSA backend
-    import rsa
+    import rsa  # noqa: PLC0415
 
     def _cloud_front_signer_from_pem(key_id, pem):
         if isinstance(pem, str):
